@@ -1,0 +1,23 @@
+{
+    "valid": {
+        "login": "123999989384993532",
+        "password": "125448934853343453285",
+        "name": "Kesha",
+        "email": "Kesha845389438944444Kesha232@mail.ru",
+        "address": "KeshaDom"
+    },
+    "with_busy_email": {
+        "login": "89232932",
+        "password": "892842",
+        "name": "111",
+        "email": "zxcvbnasfaag@mail.ru",
+        "address": "65832"
+    },
+    "with_busy_login": {
+        "login": "12345",
+        "password": "78990304",
+        "name": "gggggg",
+        "email": "ggggggg@gmail.com",
+        "address": "783939"
+    }
+}
