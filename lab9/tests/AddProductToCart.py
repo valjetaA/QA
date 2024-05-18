@@ -6,8 +6,8 @@ SITE_URL = 'http://shop.qatl.ru/'
 FIRST_PRODUCT = 'QWER'
 SECOND_PRODUCT = '1234'
 ADD_TO_CART = 'ADD TO CART'
-FIRST_PR_TABLE_COL_XPATH = '/html/body/div[7]/div/div/div[2]/div/table/tbody/tr[1]/td[2]/a'
-SECOND_PR_TABLE_COL_XPATH = '/html/body/div[7]/div/div/div[2]/div/table/tbody/tr[2]/td[2]/a'
+FIRST_PR_TABLE_COL_XPATH = "//td/a[text()='qwer']"
+SECOND_PR_TABLE_COL_XPATH = "//td/a[text()='1234']"
 CLOSE_CLASS = 'close'
 
 

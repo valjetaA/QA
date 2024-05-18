@@ -12,18 +12,18 @@ LOGIN_STR = 'login'
 PASSWORD_STR = 'password'
 FIRST_PRODUCT = 'QWER'
 ADD_TO_CART = 'ADD TO CART'
-FIRST_PR_TABLE_COL_XPATH = '/html/body/div[4]/div[3]/div/div/div/div/div[2]/table/tbody/tr[1]/td[2]/a'
+FIRST_PR_TABLE_COL_XPATH = "//a[text()='qwer']"
 BTN_DEFAULT_CLASS = 'btn-default'
-ERROR_MSG_XPATH = '/html/body/h1'
+ERROR_MSG_XPATH = '//body/h1'
 ERROR_MSG = 'Произошла ошибка'
 MAKING_ORDER_TEST_PATH = './test-data/making_order.json'
-BTN_XPATH = '/html/body/div[4]/div[3]/div/div/div/div/div[3]/form/button'
+BTN_XPATH = "//button[@type='submit']"
 BTN_PRIMARY_CLASS = 'btn-primary'
 NAME_STR = 'name'
 EMAIL_STR = 'email'
 ADDRESS_STR = 'address'
 BTN_CLASS = 'btn'
-LOGO_XPATH = '/html/body/div[2]/a'
+LOGO_XPATH = '//h1'
 ALERT_DANGER = 'alert-danger'
 
 
@@ -58,10 +58,12 @@ class MakingOrderTest(unittest.TestCase):
         self._controller.find_elem_by_xpath(BTN_XPATH).click()
         err_msg = self._controller.find_elem_by_xpath(ERROR_MSG_XPATH).text
         self.assertEqual(err_msg, ERROR_MSG, msg='Error with redirect to error page')
+
     @parameterized.expand([
         ['with_busy_email'],
         ['with_busy_login']
     ])
+
     def test_without_auth_with_busy_parameters(self, name):
         self.add_to_cart()
         test_data = self.load_test_data_from_file(MAKING_ORDER_TEST_PATH, name)
