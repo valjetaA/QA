@@ -1,17 +1,31 @@
 {
     "correctProduct": {
-        "category_id": "5",
-        "title": "776040466666",
-        "alias": "776040466666",
-        "content": "llll",
-        "price": "3000",
+        "category_id": "1",
+        "title": "531",
+        "alias": "531",
+        "content": "))))",
+        "price": "10",
+        "old_price": "1000",
+        "status": "0",
+        "keywords": "bucks",
+        "description": "new",
+        "img": "no_image.jpg",
+        "hit": "1",
+        "cat": "Men"
+    },
+    "checkProductsWithSameAlias": {
+        "category_id": "1",
+        "title": "4044",
+        "alias": "4044",
+        "content": "ok",
+        "price": "330",
         "old_price": "1500",
         "status": "0",
         "keywords": "bucks",
-        "description": "assafasgaeqw",
+        "description": "alias",
         "img": "no_image.jpg",
         "hit": "1",
-        "cat": "Механические"
+        "cat": "Men"
     },
     "correctProductEdited": {
         "category_id": "2",

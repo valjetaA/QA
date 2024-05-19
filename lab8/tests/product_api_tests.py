@@ -31,17 +31,54 @@ class TestProductsApi(unittest.TestCase):
             return True
         except:
             return False
+    
 
-    # Проверяет успешное добавление продукта с корректными значениями.
-    def test_AddingProduct_WithCorrectValues_Succeeds(self):
+
+    # Проверяет успешное добавление продукта с корректными значениями (сверка с массивом продуктов).
+    def test_AddingProduct_WithCorrectValues_Succeeds_WithCheckList(self):        
         response = self._api.add(self._products['correctProduct'])
+        self._created_product_ids.append(response['id']) 
+
         products = self._api.list()
-        print(products)
-        self.assertEqual(response['status'], 1, 'Failed to add product')
+        list_product = self._find_product(products, response['id'])
+
+        self.assertTrue(self._products['correctProduct'].items() <= list_product.items(), 'Failed to add product')
+    
+    # Проверяет успешное удаление продукта (сверка с массивом продуктов).
+    def test_DeletingProductFromTheList(self):
+        create_product = self._api.add(self._products['correctProduct'])
+        response = self._api.delete(create_product['id'])
+
+        products = self._api.list()
+        list_product = self._find_product(products, create_product['id'])
+
+        self.assertEqual(response['status'], 1, 'Response should be 1')
+        self.assertIsNone(list_product, 'Product should be deleted')
+
+    def _find_product(self, products, id):
+        for product in products:
+            if int(product['id']) == id:
+                return product
+        return None
+    
+    # Проверяет алиасы при добавлении двух одинаковых продуктов
+    def test_CreatingWithTheSameAlias_AddsPostfix(self):
+        response1 = self._api.add(self._products['checkProductsWithSameAlias'])
+        self._created_product_ids.append(response1['id']) 
+        response2 = self._api.add(self._products['checkProductsWithSameAlias'])
+        self._created_product_ids.append(response2['id']) 
+
+        products = self._api.list()
+        list_product1 = self._find_product(products, response1['id'])
+        list_product2 = self._find_product(products, response2['id'])
+
+        self.assertEqual(list_product1['alias'], self._products['checkProductsWithSameAlias']['alias'], 'First alias should not have -0 postfix')
+        self.assertEqual(list_product2['alias'], self._products['checkProductsWithSameAlias']['alias'] + '-0', 'Second alias should have -0 postfix')
 
     # Проверяет успешное добавление отредактированного продукта с корректными значениями.
     def test_AddingProduct_WithCorrectValues_Edited_Succeeds(self):
         response = self._api.add(self._products['correctProductEdited'])
+        self._created_product_ids.append(response['id']) 
         self.assertEqual(response['status'], 1, 'Failed to add edited product')
 
     # Проверяет возвращение ошибки при попытке добавления продукта с ценой в виде строки.
@@ -67,6 +104,7 @@ class TestProductsApi(unittest.TestCase):
      # Проверяет успешное добавление продукта с категорией 15.
     def test_AddingProduct_WithValid15Category_Succeeds(self):
         response = self._api.add(self._products['productWithValid15Category'])
+        self._created_product_ids.append(response['id']) 
         self.assertEqual(response['status'], 1, 'Failed to add product with valid 15 category')
 
     # Проверяет возвращение ошибки при попытке добавления продукта с категорией 16.
