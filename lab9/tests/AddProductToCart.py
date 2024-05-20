@@ -24,7 +24,7 @@ class AddProductToCart(unittest.TestCase):
         self._controller.click_on_hyperlink(ADD_TO_CART)
         time.sleep(2)
         elem = self._controller.find_elem_by_xpath(FIRST_PR_TABLE_COL_XPATH)
-        self.assertTrue(elem.text, FIRST_PRODUCT.lower())
+        self.assertTrue(elem.text, FIRST_PRODUCT.lower(), msg='Error with name product')
     
     def test_add_two_product(self):
         self._controller.click_on_hyperlink(FIRST_PRODUCT)
@@ -37,5 +37,5 @@ class AddProductToCart(unittest.TestCase):
         time.sleep(2)
         elem1 = self._controller.find_elem_by_xpath(FIRST_PR_TABLE_COL_XPATH)
         elem2 = self._controller.find_elem_by_xpath(SECOND_PR_TABLE_COL_XPATH)
-        self.assertTrue(elem1.text, FIRST_PRODUCT.lower())
-        self.assertTrue(elem2.text, SECOND_PRODUCT.lower())
+        self.assertTrue(elem1.text, FIRST_PRODUCT.lower(), msg='Error with name first product')
+        self.assertTrue(elem2.text, SECOND_PRODUCT.lower(), msg='Error with name second product')
